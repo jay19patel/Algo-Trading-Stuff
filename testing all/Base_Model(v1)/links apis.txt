@@ -1,0 +1,13 @@
+https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%20BANK => bank nifty compny
+
+
+https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY  => bank nifty  chain
+
+
+https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY  => nity 50 chain
+
+
+https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050    => nity 50 compny
+
+
+https://groww.in/v1/api/option_chain_service/v1/option_chain/derivatives/nifty => Grow  nity 50 chain

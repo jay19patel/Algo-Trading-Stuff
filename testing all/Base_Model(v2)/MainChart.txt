@@ -1,0 +1,39 @@
+import yfinance as yf
+import pandas as pd
+
+# Define the Nifty 50 symbol and the time period
+symbol = '^NSEI'  # Nifty 50 symbol
+start_date = pd.Timestamp.now() - pd.DateOffset(days=10)
+end_date = pd.Timestamp.now()
+
+# Fetch 15-minute interval data
+interval_data = yf.download(symbol, start=start_date, end=end_date, interval='15m')
+
+# Create columns for previous day's data
+interval_data['Previous_Open'] = None
+interval_data['Previous_High'] = None
+interval_data['Previous_Low'] = None
+interval_data['Previous_Close'] = None
+
+# Combine the 1-day data into the 15-minute data
+def add_previous_day_data(row):
+    date = row.name.date()
+    previous_date = date - pd.DateOffset(days=1)
+    
+    if previous_date in daily_data.index:
+        previous_day_data = daily_data.loc[previous_date]
+        row['Previous_Open'] = previous_day_data['Open']
+        row['Previous_High'] = previous_day_data['High']
+        row['Previous_Low'] = previous_day_data['Low']
+        row['Previous_Close'] = previous_day_data['Close']
+    
+    return row
+
+# Fetch 1-day interval data
+daily_data = yf.download(symbol, start=start_date, end=end_date, interval='1d')
+
+# Apply the function to add previous day's data to each row
+interval_data = interval_data.apply(add_previous_day_data, axis=1)
+
+# Print the combined data
+interval_data.tail(5)
