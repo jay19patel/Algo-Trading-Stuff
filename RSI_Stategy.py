@@ -11,6 +11,13 @@ df = ticker.history(period="2d", interval="5m")
 df['Date'] = df.index.date
 df['Time'] = df.index.time
 
+
+# Decalaration
+
+
+
+
+
 df['RSI'] = round(momentum.RSIIndicator(df['Close'], window=4).rsi(),2)
 df = df.dropna()
 df = df[df['RSI'] != 0]
