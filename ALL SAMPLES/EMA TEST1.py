@@ -8,14 +8,14 @@ from ta import momentum, trend
 symbol = "^NSEI"
 ticker = yf.Ticker(symbol)
 end_date = datetime.date.today()
-df = ticker.history(period="50d", interval="5m")
+df = ticker.history(period="5d", interval="5m")
 
 
 
-start_date = datetime.date(2023, 10, 10)  
-end_date = datetime.date(2023, 10, 11)  
+# start_date = datetime.date(2023, 10, 10)  
+# end_date = datetime.date(2023, 10, 11)  
 
-df = df[(df.index.date >= start_date) & (df.index.date <= end_date)]
+# df = df[(df.index.date >= start_date) & (df.index.date <= end_date)]
 
 
 
@@ -103,6 +103,7 @@ def find_10EMA_PE(row):
                 print("Current P&L:",current_pnl)
                 print("pe_inisal_amount:",pe_inisal_amount)
                 print("\n")
+                return
 
 
 
@@ -153,12 +154,32 @@ def find_10EMA_CE(row):
                 print("Current P&L:",current_pnl)
                 print("pe_inisal_amount:",ce_inisal_amount)
                 print("\n")
+                return
+            
 
     # ------------------------------- EXIT -------------------------------------------
-
 df.apply(find_10EMA_CE, axis=1)
+if CE_HOLDING:
+    last_price_today = round(df.iloc[-1]['Close'],2)
+    print(last_price_today)
+    print("PE Holding---------------------------")
+    current_pnl  = last_price_today - ce_current_position
+    print(current_pnl)
+    ce_inisal_amount = ce_inisal_amount + current_pnl
+
+
+if PE_HOLDING:
+    last_price_today = round(df.iloc[-1]['Close'],2)
+    print(last_price_today)
+    print("PE Holding---------------------------")
+    current_pnl  = last_price_today - pe_current_position
+    print(current_pnl)
+    pe_inisal_amount = pe_inisal_amount + current_pnl
+
+
 print("TOTAL CE : ",ce_inisal_amount)
 print("TOTAL PE: ",pe_inisal_amount)
 
 
 
+    # if row['Prev_Candle']=="Green"  and row['Prev_10EMA'] < row['Prev_Low'] and row['Low'] < row['Prev_Low']  :

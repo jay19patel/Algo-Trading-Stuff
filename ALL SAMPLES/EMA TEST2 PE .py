@@ -8,7 +8,7 @@ from ta import momentum, trend
 symbol = "^NSEI"
 ticker = yf.Ticker(symbol)
 end_date = datetime.date.today()
-df = ticker.history(period="2d", interval="5m")
+df = ticker.history(period="5d", interval="5m")
 
 
 
@@ -16,6 +16,10 @@ df = ticker.history(period="2d", interval="5m")
 # end_date = datetime.date(2023, 10, 11)  
 
 # df = df[(df.index.date >= start_date) & (df.index.date <= end_date)]
+
+
+
+
 
 
 
@@ -92,7 +96,7 @@ def find_10EMA_PE(row):
     above = abs(row['10EMA'] - row['Close'])
     total_range = abs(row['Low'] - row['High'])
     above_percentage = (above / total_range) * 100 if total_range != 0 else 0
-    if row['10EMA'] < row['Close']  and above_percentage > 40 and row['Canndel'] == "Green":
+    if row['10EMA'] < row['Low']  and above_percentage > 40 and row['Canndel'] == "Green":
             if PE_HOLDING:
                 current_pnl  = pe_current_position - row['Close']
                 pe_inisal_amount = pe_inisal_amount + current_pnl
@@ -146,6 +150,7 @@ def find_10EMA_CE(row):
     # if row['10EMA'] > row['Low'] and above_percentage < 40 and row['Canndel'] == "Red":
     if row['10EMA'] > row['Close'] and row['Canndel'] == "Red":
             if CE_HOLDING:
+                print("----------------------------",above_percentage)
                 current_pnl  = row['Close'] - ce_current_position
                 ce_inisal_amount = ce_inisal_amount + current_pnl
                 CE_HOLDING = False
