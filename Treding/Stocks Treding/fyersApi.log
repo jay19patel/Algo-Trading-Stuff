@@ -1,5 +1,0 @@
-{"level":"ERROR","location":"[get_call:118] fyersModel","message":"Extra data: line 1 column 59 (char 58)","timestamp":"2023-12-23 23:17:52,504+0530","service":"FyersDataSocket"}
-{"level":"ERROR","location":"[get_call:118] fyersModel","message":"Extra data: line 1 column 59 (char 58)","timestamp":"2023-12-23 23:18:12,544+0530","service":"FyersDataSocket"}
-{"level":"ERROR","location":"[get_call:118] fyersModel","message":"Extra data: line 1 column 59 (char 58)","timestamp":"2023-12-23 23:19:30,199+0530","service":"FyersDataSocket"}
-{"level":"ERROR","location":"[get_call:118] fyersModel","message":"Extra data: line 1 column 59 (char 58)","timestamp":"2023-12-23 23:19:45,490+0530","service":"FyersDataSocket"}
-{"level":"ERROR","location":"[get_call:118] fyersModel","message":"Extra data: line 1 column 59 (char 58)","timestamp":"2023-12-23 23:20:29,916+0530","service":"FyersDataSocket"}
