@@ -1,0 +1,61 @@
+<!-- templates/index.html -->
+{% extends 'Base.html' %}
+
+{% block title %}Home{% endblock %}\
+{% block pagetitle %}Backtest{% endblock %}
+
+{% block content %}
+
+<div class="Tred-Setup">
+        {% if not states %}
+        
+    <form action="/Backtest" method="POST">
+
+        <input type="text" placeholder="Enter Fyers Access token " name="accesstoken" style="width:85%">
+
+
+            <select name="select_index" id="select_index">
+                    <option selected value="0" >Select Index</option>
+                    <option value="NSE:NIFTY50-INDEXTY">NIFTY 50</option>
+                    <option value="NSE:NIFTYBANK-INDEX">NIFTY BANK</option>
+                    <option value="NSE:FINNIFTY-INDEX">NIFTY FIN</option>
+            </select>
+
+
+            <select name="select_timeframe" id="select_timeframe" >
+                    <option selected value="0" >Select Time Frame</option>
+                    <option value="5">5 Min</option>
+                    <option value="15">15 Min</option>
+                    <option value="60">60 Min</option>
+            </select>
+
+
+            <input type="text" placeholder="Enter Days For Backtest" name="days">
+      
+            <button type="submit" style="margin-top: 20px;">Get Result</button>
+    </form>
+    {% else %}
+    <div style="font-size: 12px;">
+
+        <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in states %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

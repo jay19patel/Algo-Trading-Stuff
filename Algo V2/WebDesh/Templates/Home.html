@@ -1,0 +1,65 @@
+<!-- templates/index.html -->
+{% extends 'Base.html' %} 
+
+{% block title %}HOME{% endblock %} 
+{% block pagetitle %}HOME{% endblock pagetitle %}
+
+{% block content %}
+<br/>
+  <div class="col-div-3">
+    <div class="box">
+      <p>{{context['Open_Positions']}}<br /><span>Open Positions</span></p>
+      <i class="fa fa-list box-icon"></i>
+    </div>
+  </div>
+  <div class="col-div-3">
+    <div class="box">
+      <p>{{context['Closed_Positions']}}<br /><span>Closed Positions</span></p>
+      <i class="fa fa-shopping-bag box-icon"></i>
+    </div>
+  </div>
+  <div class="col-div-3">
+    <div class="box">
+      <p>{{context['algo_capital']}}<br /><span>Capital P&L</span></p>
+      <i class="fa fa-tasks box-icon"></i>
+    </div>
+  </div>
+
+  <div class="col-div-3">
+    <div class="box">
+      <p>{{context['Points']}}<br /><span>Points</span></p>
+      <i class="fa fa-users box-icon"></i>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+  <br /><br />
+  <div class="col-div-10">
+    <div >
+      <div class="content-box">
+        <br />
+        <table>
+          <tr>
+            <th>OPTION SYMBOL</th>
+            <th>STATUS</th>
+            <th>BUY PRICE</th>
+            <th>SELL PRICE</th>
+            <th>PnL GROW</th>
+          </tr>
+          {% for i in context['positions_list'] %}
+          <tr>
+            <td>{{i['OPTION SYMBOL']}}</td>
+            <td>{{i['STATUS']}}</td>
+            <td>{{i['BUY PRICE']}}</td>
+            <td>{{i['SELL PRICE']}}</td>
+            <td>{{i['PnL GROW']}} ({{i['PnL GROW']}}%)</td>
+          </tr>
+          {% endfor %}  
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+{% endblock %}

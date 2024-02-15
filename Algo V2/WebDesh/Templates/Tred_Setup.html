@@ -1,0 +1,53 @@
+<!-- templates/index.html -->
+{% extends 'Base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block pagetitle %}TRED SETUP{% endblock %}
+
+
+{% block content %}
+
+<div class="Tred-Setup">
+        <form action="/Store_Tred_Setup" method="POST">
+
+
+                <select name="select_index" id="select_index">
+                        <option selected value="0" >Select Index</option>
+                        <option value="NIFTY">NIFTY 50</option>
+                        <option value="BANKNIFTY">NIFTY BANK</option>
+                        <option value="FINNIFTY">NIFTY FIN</option>
+                </select>
+
+                
+                <select name="select_type" id="select_type">
+                        <option selected value="0" >Select Type</option>
+                        <option value="CE">CALL SIDE</option>
+                        <option value="PE">PUT SIDE</option>
+                </select>
+
+                <select name="select_method" id="select_method">
+                        <option selected value="0" >Select Method</option>
+                        <option value="ABOVE">ABOVE</option>
+                        <option value="BELOW">BELOW</option>
+                        <option value="AT">AT</option>
+                </select>
+
+                <input type="text" placeholder="Enter Strick Price" name="strick_price">
+
+                <select name="select_timeframe" id="select_timeframe" >
+                        <option selected value="0" >Select Time Frame</option>
+                        <option value="5">5 Min</option>
+                        <option value="15">15 Min</option>
+                        <option value="60">60 Min</option>
+                </select>
+
+                <input type="text" placeholder="Notes" name="notes">
+
+                
+
+                       
+                    
+                <button type="submit">Done</button>
+        </form>
+</div>
+{% endblock %}

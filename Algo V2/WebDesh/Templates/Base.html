@@ -1,0 +1,30 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='MainStyle.css') }}">
+    <title>{% block title %}Flask Template App{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<style>
+    .Main-Container {
+        overflow-y: auto; /* Add vertical scrollbar if content overflows */
+        max-height: calc(100vh - 60px);
+    }
+</style>
+
+<body>
+    {% include "Sidebar.html" %}
+    <main id="Main-Container">
+        <div class="Title-Bar">
+            <h1>{% block pagetitle %}{% endblock pagetitle %}</h1>
+        </div>
+        {% block content %}{% endblock %}
+    </main>
+
+
+</body>
+</html>

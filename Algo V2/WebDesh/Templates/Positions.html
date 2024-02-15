@@ -1,0 +1,50 @@
+<!-- templates/index.html -->
+{% extends 'Base.html' %}
+
+{% block title %}Home{% endblock %}\
+{% block pagetitle %}Positions{% endblock %}
+
+{% block content %}
+
+<div class="col-div-10">
+      <div class="content-box">
+        <br />
+        <table>
+          <tr>
+            <th>INDEX</th>
+            <th>STATUS</th>
+            <th>SIDE</th>
+            <th>OPTION</th>
+            <th>INDEX PRICE</th>
+            <th>BUY PRICE</th>
+            <th>QTY</th>
+            <th>BUY DATETIME</th>
+            <th>SELL PRICE</th>
+            <th>SELL DATETIME</th>
+            <th>TARILING COUNT</th>
+            <th>POINTS</th>
+            <th>TRED TIME</th>
+          </tr>
+          {% for i in data  %}
+          <tr>
+            <td>{{i['INDEX']}}</td>
+            <td>{{i['STATUS']}}</td>
+            <td>{{i['SIDE']}}</td>
+            <td>{{i['OPTION']}}</td>
+            <td>{{i['TRIGGER INDEX PRICE']}}</td>
+            <td>{{i['BUY PRICE']}}</td>
+            <td>{{i['QTY']}}</td>
+            <td>{{i['BUY DATETIME']}}</td>
+            <td>{{i['SELL PRICE']}}</td>
+            <td>{{i['SELL DATETIME']}}</td>
+            <td>{{i['TARILING COUNT']}}</td>
+            <td>{{i['POINTS']}}</td>
+            <td>{{i['TRED TIME']}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+  </div>
+
+
+{% endblock %}
