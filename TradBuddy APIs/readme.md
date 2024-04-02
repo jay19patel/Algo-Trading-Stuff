@@ -91,3 +91,24 @@ broker_platform/
 ## Margin Trading
 - `check_margin_requirements(username, symbol, quantity)`: Check if the user meets margin requirements for a trade.
 - `calculate_margin_interest(username, amount, duration)`: Calculate the interest charged for margin borrowing.
+
+```json
+
+"OrderId": "123456789",
+  "Status": "Open",
+  "Datetime": "2024-04-02T08:30:00Z",
+  "TradeDate": "2024-04-01",
+  "BuyPrice": 100,
+  "SellPrice": 105,
+  "PnLStatus": "Profit",
+  "PnLPrice": 5,
+  "PnLInPercentage": 5,
+  "Symbol": "AAPL",
+  "Side": "Buy",
+  "Quantity": 100,
+  "PaymentStatus": "Real Money",
+  "BuyMargin": 5000,
+  "SellMargin": 5500,
+  "Message": "Message here"
+
+```
