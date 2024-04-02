@@ -1,4 +1,10 @@
 # Broker Methods
+
+```cmd
+1. If I were to build a personal broker platform, I would need to create various methods such as profile management, opening trades, closing trades, accessing trade history, buying, selling, and other functionalities essential for trading activities.
+```
+
+
 ```sh
 broker_platform/
 │
