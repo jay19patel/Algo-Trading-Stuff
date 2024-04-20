@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Update Trad {% endblock %}
+{% block content %}
+
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 scroll">
+    <h1 class="p-4 pb-8 text-xl text-center">Trad []</h1>
+    <div class="-mx-3 md:flex flex-wrap mb-2">
+
+        {% for data in updatetrad %} 
+        <div class="md:w-1/4 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="account-balance">
+                Account Balance
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red rounded py-3 px-4 mb-3"
+                id="account-balance" type="number" placeholder="1000.00" />
+        </div>
+        {% endfor %}
+
+    <!-- Submit Button -->
+    
+</div>
+<div class="flex justify-center">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Update
+    </button>
+</div>
+
+{% endblock %}

@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+{% block title %}
+  Account Overview
+{% endblock %}
+{% block content %}
+
+<!-- Divider for Open Trades -->
+<div class="flex items-center justify-center p-5">
+    <div class="w-1/3 bg-gray-300 h-px"></div>
+    <span class="px-4 text-gray-500">Account Overview</span>
+    <div class="w-1/3 bg-gray-300 h-px"></div>
+  </div>
+
+  
+<!-- Table 1: Open Trades -->
+<div class="grid grid-cols-2 lg:grid-cols-6 gap-2">
+  {% for scorebord in [1,2,3,4,5,6] %}
+    <div class="flex flex-wrap gap-4 justify-between items-center p-2">
+      <div class="flex flex-col gap-2 h-30 text-black rounded-xl shadow-md p-6 w-full bg-white text-center">
+        <div class="font-semibold text-sm">Today</div>
+        <div class="font-semibold text-2xl tracking-tight text-green-900">
+          $12.921
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Divider for Open Trades -->
+<div class="flex items-center justify-center p-5">
+  <div class="w-1/3 bg-gray-300 h-px"></div>
+  <span class="px-4 text-gray-500">Account Summry</span>
+  <div class="w-1/3 bg-gray-300 h-px"></div>
+</div>
+
+<!-- Table 4: Summary of Trades -->
+<table class="border-collapse w-full">
+  <thead>
+    <tr >
+      {% for tablecol in [
+        "INDEX",
+        "CE Profit", "CE Profit Amount",
+        "PE Profit", "PE Profit Amount",
+        "CE Loss", "CE Loss Amount",
+        "PE Loss", "PE Loss Amount",
+        "Net Trads", "Net Amount"
+      ] %}
+        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+          {{ tablecol }}
+        </th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% if SummryData %}
+    {% for row in SummryData %}
+      <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10">
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style= "color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">INDEX</span>
+            {{ row['INDEX']  }}
+        </td>
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Profit</span>
+            {{  row['CE_Profit'] }} 
+        </td>
+
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Profit Amount</span>
+          
+            {{ row['CE_Amount_Profit'] }}
+        </td>
+
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Profit</span>
+            {{ row['PE_Profit'] }}
+        </td>
+
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Profit Amount</span>
+          
+            {{ row['PE_Amount_Profit'] }}
+        </td>
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Loss</span>
+            {{ row['CE_Loss'] }}
+        </td>
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Loss Amount</span>
+            {{ row['CE_Amount_Loss'] }}
+        </td>
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Loss</span>
+          
+            {{row['PE_Loss'] }}
+        </td>
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static" 
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Profit Amount</span>
+            {{ row['PE_Amount_Loss'] }}
+        </td>
+
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Total Trads</span>
+            {{ row['Total_Tred'] }}
+        </td>
+
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+            style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Total Trad Amount</span>
+          
+            {{row['Total_Tred_Amount'] }}
+        </td>
+
+      </tr>
+    {% endfor %}
+    {% else %}
+    <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10">
+      <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static" colspan="11">
+        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">ID</span>
+        <div class="flex justify-center">
+          <span>----- No data available. -----</span>
+        </div>
+      </td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
+
+
+
+<!-- Divider for Open Trades -->
+<div class="flex items-center justify-center p-5">
+    <div class="w-1/3 bg-gray-300 h-px"></div>
+    <span class="px-4 text-gray-500">Daily Status</span>
+    <div class="w-1/3 bg-gray-300 h-px"></div>
+  </div>
+
+
+
+<!-- Table 4: Summary of Trades -->
+<table class="border-collapse w-full">
+    <thead>
+      <tr >
+        {% for tablecol in [
+          "DATE","Capital",
+          "CE Profit", "CE Profit Amount",
+          "PE Profit", "PE Profit Amount",
+          "CE Loss", "CE Loss Amount",
+          "PE Loss", "PE Loss Amount",
+          "Net Trads", "Net Amount"
+        ] %}
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+            {{ tablecol }}
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% if SummryData %}
+      {% for row in SummryData %}
+        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10">
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style= "color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">DATE</span>
+              {{ row['DATE']  }}
+          </td>
+
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style= "color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Capital</span>
+              {{ row['Capital']  }}
+          </td>
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Profit</span>
+              {{  row['CE_Profit'] }} 
+          </td>
+  
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Profit Amount</span>
+            
+              {{ row['CE_Amount_Profit'] }}
+          </td>
+  
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Profit</span>
+              {{ row['PE_Profit'] }}
+          </td>
+  
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Profit Amount</span>
+            
+              {{ row['PE_Amount_Profit'] }}
+          </td>
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Loss</span>
+              {{ row['CE_Loss'] }}
+          </td>
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">CE Loss Amount</span>
+              {{ row['CE_Amount_Loss'] }}
+          </td>
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Loss</span>
+            
+              {{row['PE_Loss'] }}
+          </td>
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static" 
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">PE Profit Amount</span>
+              {{ row['PE_Amount_Loss'] }}
+          </td>
+  
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Total Trads</span>
+              {{ row['Total_Tred'] }}
+          </td>
+  
+          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
+              style="color: {{ 'green' if row['PE_Amount_Loss'] >= 0 else 'red' }};">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Total Trad Amount</span>
+            
+              {{row['Total_Tred_Amount'] }}
+          </td>
+  
+        </tr>
+      {% endfor %}
+      {% else %}
+      <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10">
+        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static" colspan="12">
+          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">ID</span>
+          <div class="flex justify-center">
+            <span>----- No data available. -----</span>
+          </div>
+        </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+  
+  
+
+
+
+
+
+{% endblock %}
