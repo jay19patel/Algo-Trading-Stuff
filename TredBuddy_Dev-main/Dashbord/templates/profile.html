@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    TradBuddy Profile
+{% endblock %}
+
+{% block content %}
+<section class="login-container">
+    <form id="profile-form" action="/profile" method="post">
+      <div class="password-box">
+        {% if status == "ON" %}
+        <h2>You Want to Close the Algo ?</h2>
+        <input type="hidden" name="status" id="" value="OFF">
+        <button type="button" style="background-color: red;" onclick="confirmAction()">Algo Off</button>
+        {% else %}
+        <h2>You Want to Start the Algo ?</h2>
+        <input type="hidden" name="status" id="" value="ON">
+        <button type="button" style="background-color: green;" onclick="confirmAction()">Algo On</button>
+        {% endif %}
+      </div>
+    </form>
+</section>
+
+<script>
+function confirmAction() {
+    var password = prompt("Please enter your password:");
+    if (password === "123") {
+        document.getElementById("profile-form").submit();
+    } else {
+        alert("Incorrect password. Action canceled.");
+    }
+}
+</script>
+{% endblock %}

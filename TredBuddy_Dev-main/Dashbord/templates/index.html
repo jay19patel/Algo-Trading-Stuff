@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}
+    TradBuddy Dash
+{% endblock %}
+
+{% block content %}
+ 
+<!-- STATICTIC -->
+<section>
+    <div class="container">
+
+        <div class="statistic-box">
+            <h3>Trades</h3>
+            <h1>{{data.total_treds}}</h1>
+        </div>
+    
+        <div class="statistic-box">
+            <h3> Open/ Close Trades</h3>
+            <h1>{{data.total_open}}/{{data.total_close}}</h1>
+        </div>
+
+        <div class="statistic-box">
+            <h3> Positive/Nagavite Trades</h3>
+            <h1>{{data.profitable_trades}}/{{data.loss_trades}}</h1>
+        </div>
+    
+        <div class="statistic-box">
+            <h3>Win Rate Today</h3>
+            <h1>{{data.win_ratio}}</h1>
+        </div>
+    
+        <div class="statistic-box">
+            <h3>Grow Today</h3>
+            <h1 style="font-size: 30px;">{{data.today_grow}}<span style="font-size: 15px; color: brown; ">{{"%.2f" % (data.today_grow / 100000 * 100)}}%</span></h1>
+        </div>
+    
+        <div class="statistic-box">
+            <h3>Account Balance</h3>
+            <h1>{{data.account_balance}}</h1>
+        </div>
+    
+      </div>
+</section>
+  
+<!-- HEADER -->
+<section>
+    <div class="heading-container">
+        <div class="lines"></div>
+        <div class="heading-text">Open Positions</div>
+        <div class="lines"></div>
+    </div>    
+</section>
+
+<!-- OPEN POSIOTIONS TABLE -->
+<section>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="hide-on-small">ID</th>
+                    <th>Symbol</th>
+                    <th>Buy Price</th>
+                    <th>SL Price</th>
+                    <th>Target Price</th>
+                    <th class="hide-on-small">Buy Datetime</th>
+                    <th class="hide-on-small">Qnty</th>
+                    <th class="hide-on-small">Status</th>
+                    <!-- <th class="hide-on-small">Email</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for tred in data['OpenTreds'] %}
+                <tr>
+                    <td class="hide-on-small">{{tred["EXECUTION ID"]}}</td>
+                    <td>{{tred["OPTION SYMBOL"]}}</td>
+                    <td>{{tred["BUY PRICE"]}}</td>
+                    <td>{{tred["SL PRICE"]}}</td>
+                    <td>{{tred["TARGET PRICE"]}}</td>
+                    <td class="hide-on-small">{{tred["BUY DATETIME"]}}</td>
+                    <td class="hide-on-small">{{tred["QNTY"]}}</td>
+                    <td class="hide-on-small">{{tred["STATUS"]}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    
+</section>
+
+<!-- HEADER -->
+<section>
+    <div class="heading-container">
+        <div class="lines"></div>
+        <div class="heading-text">Close Positions</div>
+        <div class="lines"></div>
+    </div>    
+</section>
+
+<!-- CLOSE POSITIOSNS TABLE -->
+<section>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="hide-on-small">ID</th>
+                    <th>Symbol</th>
+                    <th>Buy Price</th>
+                    <th>Sell Price</th>
+                    <th class="hide-on-small">PnL Status</th>
+                    <th>PnL Grow</th>
+                    <th class="hide-on-small">Buy Datetime</th>
+                    <th class="hide-on-small">Sell Datetime</th>
+                    <th class="hide-on-small">Qnty</th> 
+                </tr>
+            </thead>
+            <tbody>
+                {% for tred in data["CloseTred"] %}
+                <tr>
+                    <td class="hide-on-small">{{tred["EXECUTION ID"]}}</td>
+                    <td>{{tred["OPTION SYMBOL"]}}</td>
+                    <td>{{tred["BUY PRICE"]}}</td>
+                    <td>{{tred["SELL PRICE"]}}</td>
+                    <td class="hide-on-small">{{tred["PnL Status"]}}</td>
+                    <td>{{tred["PnL GROW"]}}</td>
+                    <td class="hide-on-small">{{tred["BUY DATETIME"]}}</td>
+                    <td class="hide-on-small">{{tred["SELL DATETIME"]}}</td>
+                    <td class="hide-on-small">{{tred["QNTY"]}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    
+</section>
+
+<!-- HEADNER -->
+<section>
+    <div class="heading-container">
+        <div class="lines"></div>
+        <div class="heading-text">Over View</div>
+        <div class="lines"></div>
+    </div>    
+</section>
+
+
+
+<!-- Overvire table -->
+<section>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>INDEX</th>
+                <th class="hide-on-small">CE Profit</th>
+                <th>CE Profit Amount</th>
+                <th class="hide-on-small">PE Profit</th>
+                <th>PE Profit Amount</th>
+                <th class="hide-on-small">CE Loss</th>
+                <th>CE Loss Amount</th>
+                <th class="hide-on-small">PE Loss</th>
+                <th>PE Loss Amount</th>
+                <th class="hide-on-small"> Net Trads</th>
+                <th>Net Amount</th>
+            </tr>
+            {% for row in data.AllTred %}
+            <tr {% if loop.last %}class="highlight"{% endif %}>
+                <td class="index-color">{{ row['INDEX'] }}</td>
+                <td class="hide-on-small">{{ row['CE_Profit'] }}</td>
+                <td>{{ row['CE_Amount_Profit'] }}</td>
+                <td class="hide-on-small">{{ row['PE_Profit'] }}</td>
+                <td>{{ row['PE_Amount_Profit'] }}</td>
+                <td class="hide-on-small">{{ row['CE_Loss'] }}</td>
+                <td>{{ row['CE_Amount_Loss'] }}</td>
+                <td class="hide-on-small">{{ row['PE_Loss'] }}</td>
+                <td>{{ row['PE_Amount_Loss'] }}</td>
+                <td class="hide-on-small">{{ row['Total_Tred'] }}</td>
+                <td>{{ row['Total_Tred_Amount'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</section>
+
+{% endblock %}

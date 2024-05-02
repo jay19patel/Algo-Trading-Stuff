@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}
+    TradBuddy Dash
+{% endblock %}
+
+{% block content %}
+ 
+<!-- STATICTIC -->
+<section>
+    <div class="container">
+
+        <div class="statistic-box">
+            <h3>Trades</h3>
+            <h1>{{data.total_treds}}</h1>
+        </div>
+    
+        <div class="statistic-box">
+            <h3> Open/ Close Trades</h3>
+            <h1>{{data.total_open}}/{{data.total_close}}</h1>
+        </div>
+
+        <div class="statistic-box">
+            <h3> Positive/Nagavite Trades</h3>
+            <h1>{{data.profitable_trades}}/{{data.loss_trades}}</h1>
+        </div>
+    
+        <div class="statistic-box">
+            <h3>Win Rate</h3>
+            <h1>{{data.win_ratio}}</h1>
+        </div>
+
+        <div class="statistic-box">
+            <h3>Grow</h3>
+            <h1 style="font-size: 30px;">{{data.today_grow}}<span style="font-size: 15px; color: brown; ">{{"%.2f" % (data.today_grow / 100000 * 100)}}%</span></h1>
+        </div>
+
+        <div class="statistic-box">
+            <h3>Account Balance</h3>
+            <h1>{{data.account_balance}}</h1>
+        </div>
+    
+            
+      </div>
+</section>
+  
+<!-- HEADER -->
+<section>
+    <div class="heading-container">
+        <div class="lines"></div>
+        <div class="heading-text">Trads Over View</div>
+        <div class="lines"></div>
+    </div>    
+</section>
+
+<!-- Overvire table -->
+<section>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>INDEX</th>
+                <th class="hide-on-small">CE Profit</th>
+                <th>CE Profit Amount</th>
+                <th class="hide-on-small">PE Profit</th>
+                <th>PE Profit Amount</th>
+                <th class="hide-on-small">CE Loss</th>
+                <th>CE Loss Amount</th>
+                <th class="hide-on-small">PE Loss</th>
+                <th>PE Loss Amount</th>
+                <th class="hide-on-small"> Net Trads</th>
+                <th>Net Amount</th>
+            </tr>
+            {% for row in data.AllTred %}
+            <tr {% if loop.last %}class="highlight"{% endif %}>
+                <td class="index-color">{{ row['INDEX'] }}</td>
+                <td class="hide-on-small">{{ row['CE_Profit'] }}</td>
+                <td>{{ row['CE_Amount_Profit'] }}</td>
+                <td class="hide-on-small">{{ row['PE_Profit'] }}</td>
+                <td>{{ row['PE_Amount_Profit'] }}</td>
+                <td class="hide-on-small">{{ row['CE_Loss'] }}</td>
+                <td>{{ row['CE_Amount_Loss'] }}</td>
+                <td class="hide-on-small">{{ row['PE_Loss'] }}</td>
+                <td>{{ row['PE_Amount_Loss'] }}</td>
+                <td class="hide-on-small">{{ row['Total_Tred'] }}</td>
+                <td>{{ row['Total_Tred_Amount'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</section>
+
+
+
+ 
+<!-- HEADER -->
+<section>
+    <div class="heading-container">
+        <div class="lines"></div>
+        <div class="heading-text">Daily Status</div>
+        <div class="lines"></div>
+    </div>    
+</section>
+
+<!-- Overvire table -->
+<section>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Capital</th>
+                <!-- {% for row in dayilydata %}
+                    {% for key, value in row["Info"][-1].items() %}
+                    <th style="color: white;background: #676767;">{{key}}</th>
+                    {% endfor %}
+                {% endfor %} -->
+                <th class="hide-on-small">CE Profit</th>
+                <th>CE Profit Amount</th>
+                <th class="hide-on-small">PE Profit</th>
+                <th>PE Profit Amount</th>
+                <th class="hide-on-small">CE Loss</th>
+                <th>CE Loss Amount</th>
+                <th class="hide-on-small">PE Loss</th>
+                <th>PE Loss Amount</th>
+                <th class="hide-on-small"> Net Trads</th>
+                <th>Net Amount</th>
+
+            </tr>
+            {% for row in dayilydata %}
+            <tr>
+                <td class="index-color">{{ row['Date']}}</td>
+                <td class="index-color">{{ row['Capital']}}</td>
+                <!-- {% for key, value in row["Info"][-1].items() %}
+                <td style="color: rgb(0, 0, 0);background: #ffffff;">{{value}}</td>
+                {% endfor %} -->
+
+                <td class="hide-on-small">{{ row["Info"][-1]['CE_Profit'] }}</td>
+                <td>{{ row["Info"][-1]['CE_Amount_Profit'] }}</td>
+                <td class="hide-on-small">{{ row["Info"][-1]['PE_Profit'] }}</td>
+                <td>{{ row["Info"][-1]['PE_Amount_Profit'] }}</td>
+                <td class="hide-on-small">{{ row["Info"][-1]['CE_Loss'] }}</td>
+                <td>{{ row["Info"][-1]['CE_Amount_Loss'] }}</td>
+                <td class="hide-on-small">{{ row["Info"][-1]['PE_Loss'] }}</td>
+                <td>{{ row["Info"][-1]['PE_Amount_Loss'] }}</td>
+                <td class="hide-on-small">{{ row["Info"][-1]['Total_Tred'] }}</td>
+                <td>{{ row["Info"][-1]['Total_Tred_Amount'] }}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</section>
+
+
+
+{% endblock %}
