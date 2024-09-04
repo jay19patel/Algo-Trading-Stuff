@@ -1,0 +1,4 @@
+{"level":"ERROR","location":"[get_call:142] fyersModel","message":{"API":"/options-chain-v3","Error":{"message":"Please provide valid token","code":-15,"s":"error"}},"timestamp":"2024-05-28 22:45:43,278+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:142] fyersModel","message":{"API":"/options-chain-v3","Error":{"message":"Please provide valid token","code":-15,"s":"error"}},"timestamp":"2024-05-28 22:47:12,332+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:142] fyersModel","message":{"API":"/options-chain-v3","Error":{"message":"Please provide valid token","code":-15,"s":"error"}},"timestamp":"2024-05-30 19:11:46,916+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:142] fyersModel","message":{"API":"/options-chain-v3","Error":{"message":"Please provide valid token","code":-15,"s":"error"}},"timestamp":"2024-05-30 19:11:52,508+0530","service":"FyersAPI"}
